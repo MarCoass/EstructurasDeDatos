@@ -1,0 +1,92 @@
+/* mobile first*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  background-color: #010003;
+  color: #afafaf;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-auto-rows: 50px min-content auto 40px;
+    grid-auto-columns: 1fr;
+    gap: 10px;
+  }
+
+
+.head {
+  background-color: rgb(32, 32, 32);
+  font-size: 2em;
+  text-align: center;
+}
+
+.aside {
+  background-color: rgb(18, 18, 18);
+}
+
+#body {
+  background-color: rgb(18, 18, 18);
+  padding: 5px;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: large;
+  margin-top: 5px;
+}
+.footer {
+  background-color: rgb(18, 18, 18);
+  color: #afafaf;
+}
+
+#opciones li {
+  cursor: pointer;
+  margin: 5px 5px;
+  background-color: aliceblue;
+  margin: 10px;
+  padding: 5px;
+  background-color: rgba(175, 175, 175, 0.2);
+}
+
+
+li::before {
+  margin-right: 5px;
+}
+
+#opciones li:hover {
+  color: #c472af;
+}
+
+p {
+  padding-top: 10px;
+}
+ul {
+  list-style-position: inside;
+  list-style-type: none;
+  margin: 10px;
+}
+
+/* tamaño grande*/
+@media (min-width: 770px) {
+  .container {
+    display: grid;
+    grid-auto-rows: 50px auto 40px;
+    grid-auto-columns: max-content auto;
+    gap: 10px;
+  }
+
+  .head {
+    grid-column: 1/3;
+  }
+
+  .footer {
+    grid-column: 1/3;
+  }
+}
