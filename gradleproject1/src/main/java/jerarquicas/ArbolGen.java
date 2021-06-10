@@ -426,4 +426,36 @@ public class ArbolGen {
         }
         return grado;
     }
+    
+    //------------------PRACTICA 2DO PARCIAL------------------//
+    //------------------verificarCamino()------------------//
+    /*Implemente el metodo verificarCamino() que dada una lista, verifica
+    si la misma corresponde a un camino desde la raiz hasta algun elemento
+    del arbol*/
+    public boolean verificarCamino(Lista lista) {
+        boolean verifica = verificarCaminoRecursivo(lista, this.raiz, 1);
+        return verifica;
+    }
+
+    private boolean verificarCaminoRecursivo(Lista lista, NodoGen nodo, int pos) {
+        
+        boolean verifica = false;
+        if (nodo != null) {
+            //el nodo es igual al elem de la lista en posicion pos?
+            if (nodo.getElem().equals(lista.recuperar(pos))) {
+                //si coincide y pos es el ultimo elemento de la lista, retorno true
+                if (pos == lista.longitud()) {
+                    verifica = true;
+                } else {
+                    //si no es el ultimo elemento de la lista, veo en los hijos del nodo si se verifica
+                    NodoGen hijo = nodo.getHijoIzquierdo();
+                    while (!verifica && hijo != null) {
+                        verifica = verificarCaminoRecursivo(lista, hijo, pos + 1);
+                        hijo = hijo.getHermanoDerecho();
+                    }
+                }
+            }
+        }
+        return verifica;
+    }
 }
