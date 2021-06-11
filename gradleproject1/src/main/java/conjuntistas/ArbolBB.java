@@ -296,4 +296,26 @@ public class ArbolBB {
 
         }
     }
+    //-----------------------PRACTICA 2DO PARCIAL-----------------------//
+    //-----------------------eliminarMinimo()-----------------------//
+    /*implementar el metodo eliminarMinimo() que elimine el elemento mas
+    pequeño del arbol en un solo recorrido y visitando lo minimo indisplensable*/
+    public void eliminarMinimo(){
+        if(this.raiz!=null){
+            eliminarMinimoRecursivo(this.raiz);
+        }
+    }
+    
+    private void eliminarMinimoRecursivo(NodoABB nodo){
+        if (nodo!=null) {
+            if (nodo.getIzq().getIzq()!=null) {
+                //el nodo izq tiene hijo izquierdo, significa que no es el menor
+                eliminarMinimoRecursivo(nodo.getIzq());
+            } else {
+                //el hijo es hoja
+                nodo.setIzq(null);
+                
+            }
+        }
+    }
 }
