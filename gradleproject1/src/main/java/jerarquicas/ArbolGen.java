@@ -472,8 +472,6 @@ public class ArbolGen {
     
     private void listarEntreNivelesRecursivo(int niv1, int niv2, Lista lista, NodoGen nodo, int nivActual) {
         if (nodo != null) {
-            System.out.println("Entra con nivel:" + nivActual);
-            System.out.println("Con nodo: " + nodo.getElem());
             if (nivActual <= niv2) {
                 //si el nivel actual es menor qu niv2, llamo con el hijo izquierdo
                 NodoGen hijo = nodo.getHijoIzquierdo();
