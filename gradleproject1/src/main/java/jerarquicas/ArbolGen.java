@@ -458,4 +458,40 @@ public class ArbolGen {
         }
         return verifica;
     }
+    //------------------listarEntreNiveles()------------------//
+    /*Implementar el metodo listarEntreNiveles(int niv1, int niv2) que recibe como parametro dos elementos
+    niv1 y niv2 y devuelve una lista con los elementos del arbol que estan entre los niveles niv1 y niv2 inclusive.
+    El metodo debe recorrer el en inorden y no debe visitar nodos de mas*/
+    public Lista listarEntreNiveles(int niv1, int niv2) {
+        Lista lista = new Lista();
+        if (this.raiz != null) {
+            listarEntreNivelesRecursivo(niv1, niv2, lista, this.raiz, 0);
+        }
+        return lista;
+    }
+    
+    private void listarEntreNivelesRecursivo(int niv1, int niv2, Lista lista, NodoGen nodo, int nivActual) {
+        if (nodo != null) {
+            System.out.println("Entra con nivel:" + nivActual);
+            System.out.println("Con nodo: " + nodo.getElem());
+            if (nivActual <= niv2) {
+                //si el nivel actual es menor qu niv2, llamo con el hijo izquierdo
+                NodoGen hijo = nodo.getHijoIzquierdo();
+                listarEntreNivelesRecursivo(niv1, niv2, lista, hijo, nivActual + 1);
+                //solo agrego el elemento si niv1 es menor o igual que nivActual
+                if (nivActual >= niv1) {
+                    lista.insertar(nodo.getElem(), lista.longitud() + 1);
+                }
+                //llamo con el resto de los hijos, si los tiene
+                if (hijo != null) {
+                    hijo = hijo.getHermanoDerecho();
+                    while (hijo != null) {
+                        listarEntreNivelesRecursivo(niv1, niv2, lista, hijo, nivActual + 1);
+                        hijo = hijo.getHermanoDerecho();
+                    }
+                }
+                
+            }
+        }
+    }
 }
