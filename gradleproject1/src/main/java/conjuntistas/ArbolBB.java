@@ -318,4 +318,53 @@ public class ArbolBB {
             }
         }
     }
+    //-----------------------obtenerNodo()-----------------------//
+    private NodoABB obtenerNodo(Comparable elem, NodoABB nodo) {
+        NodoABB resultado = null ;
+        if (nodo != null) {
+            if (nodo.getElem().compareTo(elem) == 0) {
+                resultado = nodo;
+            } else {
+                if (nodo.getElem().compareTo(elem) > 0) {
+                    resultado = obtenerNodo(elem, nodo.getIzq());
+                } else {
+                    resultado = obtenerNodo(elem, nodo.getDer());
+                }
+            }
+        
+        }
+        return resultado;
+    }
+//-----------------------EJERCICIO 2DO PARCIAL-----------------------//
+    //-----------------------sumarPreordenDesde()-----------------------//
+    /*Desarrollar el método sumarPreordenDesde(elem,k), que recibe como parámetro el elemento elem y el valor entero k. 
+Se debe encontrar elem en el árbol, y para ese subárbol de raíz elem, recorrer en preorden y sumar los valores de cada nodo 
+visitado hasta que esa suma llegue a superar el valor k, y ahí detener el recorrido. (elem se debe incluir en la suma.)*/
+    public int sumarPreordenDesde(Comparable elem, int k) {
+        int suma = 0;
+         NodoABB nodo = obtenerNodo(elem, this.raiz);
+        if (nodo!=null) {
+            suma = sumarPreordenRecursivo(nodo, k, suma);
+            if (suma < k) {
+                suma = suma * (-1);
+            }
+        }
+        return suma;
+    }
+
+    private int sumarPreordenRecursivo(NodoABB nodo, int k, int total) {
+
+        if (nodo != null) {
+            total = total + (int) nodo.getElem();
+            if (total <= k) {
+                total = sumarPreordenRecursivo(nodo.getIzq(), k, total);
+            }
+            if (total < k) {
+                total = sumarPreordenRecursivo(nodo.getDer(), k, total);
+            } else {
+            }
+        }
+        System.out.println("retorna: " + total);
+        return total;
+    }
 }
